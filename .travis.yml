@@ -7,7 +7,7 @@ env:
     - DOCKERBUILDER=greenaddress/core_builder_for_android
     - DOCKERHASH=a9c690bed85729f9a7ac32a682c7c93494eaaccfea5f9d64459e6fd9ea621a6f
     - REPO=https://github.com/bitcoin/bitcoin.git
-    - COMMIT=2848aa808fde462c27bc36de982d7ed74e882a7b
+    - COMMIT=3e4829af097b12f4255e9b04fa27c408850a783f
     - TOOLCHAIN=aarch64-linux-android-clang
     - TARGETHOST=aarch64-linux-android
     - BITS=64
