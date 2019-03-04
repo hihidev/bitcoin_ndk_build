@@ -5,12 +5,16 @@ repo=$1
 commit=$2
 target_host=$3
 bits=$4
+root_dir=$5
 
 git clone $repo bitcoin
 cd bitcoin
 git checkout $commit
 
-patch -p1 < /repo/0001-android-patches.patch
+cp $root_dir/0001-android-patches.patch  $root_dir/0001-android-patches.patch.tmp
+sed -i -e "s~ROOT_DIR~$root_dir~g" $root_dir/0001-android-patches.patch.tmp
+patch -p1 < $root_dir/0001-android-patches.patch.tmp
+rm  $root_dir/0001-android-patches.patch.tmp
 
 export PATH=/opt/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin:${PATH}
 export AR=${target_host/v7a/}-ar
@@ -38,6 +42,8 @@ make install
 
 $STRIP depends/${target_host/v7a/}/bin/bitcoind
 
-repo_name=$(basename $(dirname ${repo}))
+if [ "$root_dir" == '/repo' ]; then
+	repo_name=$(basename $(dirname ${repo}))
 
-tar -zcf /repo/${target_host/v7a/}_${repo_name}.tar.gz -C depends/${target_host/v7a/}/bin bitcoind
+	tar -zcf /repo/${target_host/v7a/}_${repo_name}.tar.gz -C depends/${target_host/v7a/}/bin bitcoind
+fi

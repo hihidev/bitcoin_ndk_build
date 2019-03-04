@@ -73,7 +73,7 @@ index 5f622f8e6..40daeb60f 100644
  
  define $(package)_preprocess_cmds
 -  ./autogen.sh
-+  ./autogen.sh && patch -p1 < /repo/0001-fixup.patch
++  ./autogen.sh && patch -p1 < ROOT_DIR/0001-fixup.patch
  endef
  
  define $(package)_set_vars

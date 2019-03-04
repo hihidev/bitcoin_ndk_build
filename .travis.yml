@@ -1,11 +1,11 @@
-language: generic
+dist: xenial
+os: linux
+language: minimal
 sudo: required
 services:
   - docker
 env:
   global:
-    - DOCKERBUILDER=greenaddress/core_builder_for_android
-    - DOCKERHASH=2a9b12f11368b117891e2dc7b57dfc2ba52831bc522508906014c3d1cde4bbfa
     - REPO=https://github.com/bitcoin/bitcoin.git
     - COMMIT=ef70f9b52b851c7997a9f1a0834714e3eebc1fd8
     - TARGETHOST=aarch64-linux-android
@@ -15,10 +15,6 @@ env:
     - TARGETHOST=armv7a-linux-androideabi BITS=32
     - TARGETHOST=x86_64-linux-android
     - TARGETHOST=i686-linux-android BITS=32
-    - REPO=https://github.com/bitcoinknots/bitcoin.git COMMIT=ab05daa871db7c5772e6477c0bdddaa6f3808afd
-    - REPO=https://github.com/bitcoinknots/bitcoin.git COMMIT=ab05daa871db7c5772e6477c0bdddaa6f3808afd TARGETHOST=x86_64-linux-android
-    - REPO=https://github.com/bitcoinknots/bitcoin.git COMMIT=ab05daa871db7c5772e6477c0bdddaa6f3808afd TARGETHOST=i686-linux-android BITS=32
-    - REPO=https://github.com/bitcoinknots/bitcoin.git COMMIT=ab05daa871db7c5772e6477c0bdddaa6f3808afd TARGETHOST=armv7a-linux-androideabi BITS=32
 
 script:
-  - docker run -v $PWD:/repo $DOCKERBUILDER@sha256:$DOCKERHASH /bin/bash -c "/repo/fetchbuild.sh $REPO $COMMIT $TARGETHOST $BITS"
+  - docker run -v $PWD:/repo debian:stretch /bin/bash -c "/repo/fetchbuild.sh $REPO $COMMIT $TARGETHOST $BITS"
