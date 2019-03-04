@@ -17,4 +17,4 @@ env:
     - TARGETHOST=i686-linux-android BITS=32
 
 script:
-  - docker run -v $PWD:/repo debian:stretch /bin/bash -c "/repo/fetchbuild.sh $REPO $COMMIT $TARGETHOST $BITS" 
+  - docker run -v $PWD:/repo debian:stretch /bin/bash -c "/repo/stretch_deps.sh && /repo/fetchbuild.sh $REPO $COMMIT $TARGETHOST $BITS" 
