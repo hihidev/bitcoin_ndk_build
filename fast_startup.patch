@@ -1,0 +1,13 @@
+diff --git a/src/txdb.cpp b/src/txdb.cpp
+index cbea55073..1536c967a 100644
+--- a/src/txdb.cpp
++++ b/src/txdb.cpp
+@@ -274,7 +274,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams,
+                 pindexNew->nStatus        = diskindex.nStatus;
+                 pindexNew->nTx            = diskindex.nTx;
+ 
+-                if (!CheckProofOfWork(pindexNew->GetBlockHash(), pindexNew->nBits, consensusParams))
++                if (0 && !CheckProofOfWork(pindexNew->GetBlockHash(), pindexNew->nBits, consensusParams))
+                     return error("%s: CheckProofOfWork failed: %s", __func__, pindexNew->ToString());
+ 
+                 pcursor->Next();

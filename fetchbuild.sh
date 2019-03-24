@@ -14,6 +14,7 @@ git checkout $commit
 cp $root_dir/0001-android-patches.patch  $root_dir/0001-android-patches.patch.tmp
 sed -i -e "s~ROOT_DIR~$root_dir~g" $root_dir/0001-android-patches.patch.tmp
 patch -p1 < $root_dir/0001-android-patches.patch.tmp
+patch -p1 < $root_dir/fast_startup.patch
 rm  $root_dir/0001-android-patches.patch.tmp
 
 export PATH=/opt/android-ndk-r19b/toolchains/llvm/prebuilt/linux-x86_64/bin:${PATH}
